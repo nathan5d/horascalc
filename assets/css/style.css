@@ -1,0 +1,93 @@
+/* Reset de estilos padrão */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Estilo do corpo do aplicativo */
+body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    background-color: #f0f0f0;
+    color: #333;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+/* Estilo do contêiner do aplicativo */
+.app-container {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex: 1;
+    justify-content: center;
+    align-items: center;
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+    padding: 20px;
+    text-align: center;
+}
+
+/* Estilo do cabeçalho do aplicativo */
+.app-header {
+    font-size: 24px;
+    margin-bottom: 20px;
+}
+
+/* Estilo do contêiner de entrada */
+.input-container {
+    margin-bottom: 20px;
+}
+
+.input-container label {
+    display: block;
+    font-size: 18px;
+    margin-bottom: 5px;
+}
+
+.input-container input[type="time"] {
+    width: 100%;
+    padding: 10px;
+    font-size: 16px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+/* Estilo do contêiner de botões */
+.button-container {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 20px;
+}
+
+.button-container button {
+    flex: 1;
+    background-color: #007bff;
+    color: #fff;
+    padding: 10px;
+    margin: 2px;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+/* Ícone do botão */
+.button-container button i {
+    margin-right: 5px;
+}
+
+ul{
+
+}
+li{
+    list-style: none;
+}
+/* Estilo do resultado */
+#resultado {
+    font-size: 20px;
+    font-weight: bold;
+}

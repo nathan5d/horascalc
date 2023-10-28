@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Calculadora de Horas</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+    <link rel="stylesheet" href="assets/css/style.css">
+</head>
+
+<body>
+    <div class="app-container">
+        <div class="app-page">
+            <div class="app-header">
+                <h1>Calculadora de Horas</h1>
+            </div>
+
+            <div class="input-container">
+                <label for="hora1">Hora 1:</label>
+                <input type="time" id="hora1" />
+
+                <label for="hora2">Hora 2:</label>
+                <input type="time" id="hora2" />
+            </div>
+
+            <div class="button-container">
+                <button id="somar"><i class="fas fa-plus"></i> Somar Horas</button>
+                <button id="subtrair"><i class="fas fa-minus"></i> Subtrair Horas</button>
+
+                
+            </div>
+            <div class="button-container">
+
+                <button id="tempoDecorrido"><i class="fas fa-clock"></i> Tempo Decorrido</button>
+            </div>
+
+            <p>Resultado: <span id="resultado">0</span> horas</p>
+
+            <ul id="historico">
+            </ul>
+
+        </div>
+    </div>
+    <script>
+        var formato24Horas = true;  // Inicialmente, use formato de 24 horas
+
+        $("#alternar-formato").click(function () {
+            formato24Horas = !formato24Horas; // Alternar entre 12 e 24 horas
+        });
+
+        // Função para formatar as horas
+        function formatarHoras(horas, minutos) {
+            if (formato24Horas) {
+                return horas + ":" + minutos;
+            } else {
+                return (horas % 12 || 12) + ":" + minutos + (horas >= 12 ? " PM" : " AM");
+            }
+        }
+
+
+        $(document).ready(function () {
+            $("#somar").click(function () {
+                var hora1 = $("#hora1").val();
+                var hora2 = $("#hora2").val();
+
+                var partes1 = hora1.split(":");
+                var partes2 = hora2.split(":");
+
+                var horas1 = parseInt(partes1[0]);
+                var minutos1 = parseInt(partes1[1]);
+                var horas2 = parseInt(partes2[0]);
+                var minutos2 = parseInt(partes2[1]);
+
+                var totalHoras = horas1 + horas2;
+                var totalMinutos = minutos1 + minutos2;
+
+                if (totalMinutos >= 60) {
+                    totalHoras++;
+                    totalMinutos -= 60;
+                }
+
+                if (totalHoras >= 24) {
+                    totalHoras -= 24;
+                }
+
+                $("#resultado").text(totalHoras + " horas e " + totalMinutos + " minutos");
+            });
+
+            $("#subtrair").click(function () {
+                var hora1 = $("#hora1").val();
+                var hora2 = $("#hora2").val();
+
+                var partes1 = hora1.split(":");
+                var partes2 = hora2.split(":");
+
+                var horas1 = parseInt(partes1[0]);
+                var minutos1 = parseInt(partes1[1]);
+                var horas2 = parseInt(partes2[0]);
+                var minutos2 = parseInt(partes2[1]);
+
+                var totalHoras = horas1 - horas2;
+                var totalMinutos = minutos1 - minutos2;
+
+                if (totalMinutos < 0) {
+                    totalHoras--;
+                    totalMinutos += 60;
+                }
+
+                if (totalHoras < 0) {
+                    totalHoras += 24;
+                }
+
+                $("#resultado").text(totalHoras + " horas e " + totalMinutos + " minutos");
+            });
+
+            $("#tempoDecorrido").click(function () {
+                var hora1 = $("#hora1").val();
+                var hora2 = $("#hora2").val();
+
+                var partes1 = hora1.split(":");
+                var partes2 = hora2.split(":");
+
+                var horas1 = parseInt(partes1[0]);
+                var minutos1 = parseInt(partes1[1]);
+                var horas2 = parseInt(partes2[0]);
+                var minutos2 = parseInt(partes2[1]);
+
+                var data1 = new Date(0, 0, 0, horas1, minutos1, 0);
+                var data2 = new Date(0, 0, 0, horas2, minutos2, 0);
+
+                var diferenca = new Date(data2 - data1);
+
+                var horas = diferenca.getUTCHours();
+                var minutos = diferenca.getUTCMinutes();
+                var segundos = diferenca.getUTCSeconds();
+
+                $("#resultado").text(horas + " horas, " + minutos + " minutos e " + segundos + " segundos");
+            });
+
+
+            $("#somar, #subtrair, #tempoDecorrido").click(function () {
+                var text = $(this).text();
+                var resultado = $("#resultado").text();
+                var historico = $("#historico");
+                var novoItem = $("<li>").html('<i>'+text +'</i>'+' - <b>'+resultado+'</b>');
+                historico.prepend(novoItem);
+            });
+        });
+    </script>
+</body>
+
+</html>
