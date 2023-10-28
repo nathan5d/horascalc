@@ -63,6 +63,20 @@ body {
     margin-bottom: 20px;
 }
 
+/* Estilos para inputs de time em dispositivos móveis */
+input[type="time"] {
+    width: 100%;
+    box-sizing: border-box;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    font-size: 14px;
+    appearance: none;
+    -webkit-appearance: none;
+    background-color: #ffffff;
+    min-height: 40px;
+}
+
 .button-container button {
     flex: 1;
     background-color: #007bff;
@@ -79,6 +93,7 @@ body {
 .button-container button i {
     margin-right: 5px;
 }
+
 
 ul{
 

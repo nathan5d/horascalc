@@ -4,6 +4,18 @@
 <head>
     <title>Calculadora de Horas</title>
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="apple-mobile-web-app-title" content="HorasCalc">
+    <link rel="apple-touch-icon" href="icon.png">
+    <meta name="apple-mobile-web-app-status-bar" content="#ffffff" />
+    <meta name="theme-color" content="#ffffff" />
+
+
+    <link rel="manifest" href="./manifest.json">
+
+
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
@@ -30,7 +42,7 @@
                 <button id="somar"><i class="fas fa-plus"></i> Somar Horas</button>
                 <button id="subtrair"><i class="fas fa-minus"></i> Subtrair Horas</button>
 
-                
+
             </div>
             <div class="button-container">
 
@@ -145,10 +157,22 @@
                 var text = $(this).text();
                 var resultado = $("#resultado").text();
                 var historico = $("#historico");
-                var novoItem = $("<li>").html('<i>'+text +'</i>'+' - <b>'+resultado+'</b>');
+                var novoItem = $("<li>").html('<i>' + text + '</i>' + ' - <b>' + resultado + '</b>');
                 historico.prepend(novoItem);
             });
         });
+    </script>
+
+    <script>
+        if ('serviceWorker' in navigator) {
+            navigator.serviceWorker.register('/horascalc/service-worker.js')
+                .then(function (registration) {
+                    console.log('Service Worker registrado com sucesso:', registration);
+                })
+                .catch(function (error) {
+                    console.log('Erro ao registrar o Service Worker:', error);
+                });
+        }
     </script>
 </body>
 
